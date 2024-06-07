@@ -1,0 +1,614 @@
+---
+title: Data Structures
+section: Docs
+order: 3
+---
+
+# Data Structures
+
+Python provides a wide range of built-in data structures that allow you to store and organize data in different ways. Understanding these data structures, their characteristics, and the operations and methods that can be performed on them is crucial for writing efficient and readable code. In this comprehensive document, we'll explore the different data structures available in Python, their use cases, and the various operations and methods associated with each data type.
+
+## 1. Text Type: `str`
+
+The `str` (string) data type in Python is used to represent a sequence of characters. Strings are immutable, meaning their values cannot be changed after they are created.
+
+### i. Operations and Methods
+
+#### a. String Indexing and Slicing
+
+Strings support indexing and slicing operations, which allow you to access individual characters or substrings.
+
+```python
+name = "Alice"
+print(name[0])  # Output: 'A'
+print(name[-1])  # Output: 'e'
+print(name[1:4])  # Output: 'lic'
+```
+
+#### b. String Concatenation
+
+Strings can be concatenated using the `+` operator or the `join()` method.
+
+```python
+first_name = "Alice"
+last_name = "Smith"
+full_name = first_name + " " + last_name  # Concatenation with +
+print(full_name)  # Output: Alice Smith
+
+names = ["Alice", "Bob", "Charlie"]
+joined_names = ", ".join(names)  # Concatenation with join()
+print(joined_names)  # Output: Alice, Bob, Charlie
+```
+
+#### c. String Methods
+
+Strings provide many built-in methods for performing various operations, such as:
+
+- `upper()` and `lower()`: Convert the string to uppercase or lowercase.
+- `strip()`, `lstrip()`, and `rstrip()`: Remove whitespace characters from the start, end, or both ends of the string.
+- `replace()`: Replace occurrences of a substring with another substring.
+- `split()`: Split a string into a list of substrings based on a delimiter.
+- `join()`: Join a list of strings into a single string using a delimiter.
+- `find()` and `index()`: Find the index of a substring within the string.
+- `startswith()` and `endswith()`: Check if the string starts or ends with a specified substring.
+
+```python
+message = "  Hello, World!  "
+print(message.strip())  # Output: "Hello, World!"
+print(message.replace("World", "Python"))  # Output: "  Hello, Python!  "
+words = message.split(",")
+print(words)  # Output: ['  Hello', ' World!  ']
+```
+
+#### d. String Formatting
+
+Python provides various ways to format strings, including f-strings (formatted string literals), the `format()` method, and the older `%` operator.
+
+```python
+name = "Alice"
+age = 25
+print(f"My name is {name} and I'm {age} years old.")  # f-strings
+print("My name is {} and I'm {} years old.".format(name, age))  # format() method
+print("My name is %s and I'm %d years old." % (name, age))  # % operator
+```
+
+## 2. Numeric Types
+
+Python provides three main numeric data types: `int`, `float`, and `complex`.
+
+### i. `int` (Integer)
+
+The `int` data type represents positive or negative whole numbers without a fractional part.
+
+#### a. Integer Operations
+
+Integers support various arithmetic operations like addition (`+`), subtraction (`-`), multiplication (`*`), division (`//` for integer division, `/` for float division), modulus (`%`), and exponentiation (`**`).
+
+```python
+x = 10
+y = 3
+print(x + y)  # Output: 13
+print(x - y)  # Output: 7
+print(x * y)  # Output: 30
+print(x // y)  # Output: 3 (integer division)
+print(x % y)  # Output: 1 (modulus)
+print(x ** y)  # Output: 1000 (exponentiation)
+```
+
+#### b. Integer Methods
+
+Integers provide a few built-in methods, such as `bit_length()` (to get the number of bits required to represent the integer) and `to_bytes()` (to convert the integer to a bytes object).
+
+```python
+x = 42
+print(x.bit_length())  # Output: 6 (number of bits required to represent 42)
+print(x.to_bytes(2, byteorder='big'))  # Output: b'\x00*' (bytes representation of 42)
+```
+
+### ii. `float` (Floating-Point Number)
+
+The `float` data type represents numbers with a fractional part.
+
+#### a. Float Operations
+
+Floating-point numbers support the same arithmetic operations as integers, with the addition of the `/` operator for floating-point division.
+
+```python
+x = 3.14
+y = 2.0
+print(x + y)  # Output: 5.14
+print(x - y)  # Output: 1.14
+print(x * y)  # Output: 6.28
+print(x / y)  # Output: 1.57 (floating-point division)
+```
+
+#### b. Float Methods
+
+Floating-point numbers provide several built-in methods, including `as_integer_ratio()` (to convert the float to a numerator and denominator pair), `is_integer()` (to check if the float is an integer), and `hex()` (to convert the float to a hexadecimal string).
+
+```python
+x = 3.14
+print(x.as_integer_ratio())  # Output: (3141, 1000) (numerator and denominator pair)
+print(x.is_integer())  # Output: False
+print(x.hex())  # Output: '0x1.91eb851eb851fp+1' (hexadecimal representation)
+```
+
+### iii. `complex` (Complex Number)
+
+The `complex` data type represents complex numbers, which consist of a real and an imaginary part.
+
+#### a. Complex Operations
+
+Complex numbers support arithmetic operations like addition, subtraction, multiplication, division, and exponentiation, as well as methods like `conjugate()` (to get the complex conjugate) and `imag` and `real` (to access the imaginary and real parts, respectively).
+
+```python
+z = 2 + 3j
+print(z + 1)  # Output: (3+3j)
+print(z * 2)  # Output: (4+6j)
+print(z.conjugate())  # Output: (2-3j)
+print(z.real)  # Output: 2.0
+print(z.imag)  # Output: 3.0
+```
+
+## 3. Sequence Types
+
+Python provides three sequence data types: `list`, `tuple`, and `range`. These data structures are used to store ordered collections of items.
+
+### i. `list`
+
+A `list` is an ordered collection of items that can be of different data types. Lists are mutable, meaning their elements can be modified after creation.
+
+#### a. List Operations
+
+Lists support various operations like indexing, slicing, concatenation, repetition, membership testing, and more.
+
+```python
+fruits = ["apple", "banana", "cherry"]
+print(fruits[0])  # Output: 'apple'
+print(fruits[-1])  # Output: 'cherry'
+print(fruits[1:3])  # Output: ['banana', 'cherry']
+print(fruits + ["orange"])  # Output: ['apple', 'banana', 'cherry', 'orange']
+print(fruits * 2)  # Output: ['apple', 'banana', 'cherry', 'apple', 'banana', 'cherry']
+print("apple" in fruits)  # Output: True
+```
+
+#### b. List Methods
+
+Lists provide many built-in methods for performing various operations, such as:
+
+- `append()`: Add an item to the end of the list.
+- `insert()`: Insert an item at a specified index.
+- `remove()`: Remove the first occurrence of an item from the list.
+- `pop()`: Remove and return the item at a specified index (or the last item if no index is provided).
+- `index()`: Return the index of the first occurrence of an item in the list.
+- `count()`: Return the number of occurrences of an item in the list.
+- `sort()`: Sort the list in ascending order (optionally, you can provide a custom sorting function).
+- `reverse()`: Reverse the order of the items in the list.
+- `extend()`: Add multiple items from another iterable (e.g., list, tuple, or range) to the end of the list.
+- `copy()`: Create a shallow copy of the list.
+
+```python
+fruits = ["apple", "banana", "cherry"]
+fruits.append("orange")
+print(fruits)  # Output: ['apple', 'banana', 'cherry', 'orange']
+
+fruits.insert(1, "grape")
+print(fruits)  # Output: ['apple', 'grape', 'banana', 'cherry', 'orange']
+
+fruits.remove("banana")
+print(fruits)  # Output: ['apple', 'grape', 'cherry', 'orange']
+
+print(fruits.pop(1))  # Output: 'grape'
+print(fruits)  # Output: ['apple', 'cherry', 'orange']
+
+fruits.extend(["kiwi", "mango"])
+print(fruits)  # Output: ['apple', 'cherry', 'orange', 'kiwi', 'mango']
+
+fruits.sort()
+print(fruits)  # Output: ['apple', 'cherry', 'kiwi', 'mango', 'orange']
+
+fruits.reverse()
+print(fruits)  # Output: ['orange', 'mango', 'kiwi', 'cherry', 'apple']
+```
+
+### ii. `tuple`
+
+A `tuple` is an ordered collection of items similar to a list, but it is immutable, meaning its elements cannot be modified after creation.
+
+#### a. Tuple Operations
+
+Tuples support operations like indexing, slicing, concatenation, repetition, and membership testing, similar to lists.
+
+```python
+point = (3, 4)
+print(point[0])  # Output: 3
+print(point[-1])  # Output: 4
+print(point[:1])  # Output: (3,)
+print(point + (5, 6))  # Output: (3, 4, 5, 6)
+print(point * 2)  # Output: (3, 4, 3, 4)
+print(3 in point)  # Output: True
+```
+
+#### b. Tuple Methods
+
+Tuples have fewer built-in methods compared to lists because they are immutable. The most commonly used methods are `count()` and `index()`.
+
+```python
+colors = ("red", "green", "blue", "red")
+print(colors.count("red"))  # Output: 2
+print(colors.index("green"))  # Output: 1
+```
+
+### iii. `range`
+
+The `range` data type represents an immutable sequence of numbers. It is commonly used in loops to iterate over a specific range of values.
+
+#### a. Creating a `range`
+
+The `range()` function takes one, two, or three arguments:
+
+- `range(stop)`: Creates a range from 0 to `stop - 1`.
+- `range(start, stop)`: Creates a range from `start` to `stop - 1`.
+- `range(start, stop, step)`: Creates a range from `start` to `stop - 1`, incrementing by `step`.
+
+```python
+print(list(range(5)))  # Output: [0, 1, 2, 3, 4]
+print(list(range(2, 6)))  # Output: [2, 3, 4, 5]
+print(list(range(1, 10, 2)))  # Output: [1, 3, 5, 7, 9]
+```
+
+#### b. `range` Operations
+
+Ranges support indexing, slicing, and membership testing, similar to other sequences.
+
+```python
+r = range(5)
+print(r[2])  # Output: 2
+print(list(r[1:4]))  # Output: [1, 2, 3]
+print(3 in r)  # Output: True
+```
+
+However, ranges do not support item assignment or other mutable operations since they are immutable.
+
+## 4. Mapping Type: `dict`
+
+The `dict` (dictionary) data type in Python is an unordered collection of key-value pairs. Dictionaries are mutable and allow for efficient retrieval and storage of data using keys.
+
+#### a. Dictionary Operations
+
+Dictionaries support various operations like indexing (using keys), updating values, deleting items, membership testing (`in` operator), and more.
+
+```python
+person = {"name": "Alice", "age": 25, "city": "New York"}
+print(person["name"])  # Output: 'Alice'
+person["age"] = 26
+print(person)  # Output: {'name': 'Alice', 'age': 26, 'city': 'New York'}
+del person["city"]
+print(person)  # Output: {'name': 'Alice', 'age': 26}
+print("occupation" in person)  # Output: False
+```
+
+#### b. Dictionary Methods
+
+Dictionaries provide several built-in methods for managing and manipulating their contents, such as:
+
+- `keys()`: Return a view object containing the dictionary's keys.
+- `values()`: Return a view object containing the dictionary's values.
+- `items()`: Return a view object containing the dictionary's key-value pairs as tuples.
+- `get()`: Return the value associated with a key, or a default value if the key is not found.
+- `pop()`: Remove and return the value associated with a key (optional default value if the key is not found).
+- `update()`: Update the dictionary with key-value pairs from another dictionary or an iterable of key-value pairs.
+- `clear()`: Remove all items from the dictionary.
+
+```python
+person = {"name": "Alice", "age": 25, "city": "New York"}
+print(list(person.keys()))  # Output: ['name', 'age', 'city']
+print(list(person.values()))  # Output: ['Alice', 25, 'New York']
+print(list(person.items()))  # Output: [('name', 'Alice'), ('age', 25), ('city', 'New York')]
+
+print(person.get("occupation", "Unknown"))  # Output: 'Unknown'
+print(person.pop("city"))  # Output: 'New York'
+print(person)  # Output: {'name': 'Alice', 'age': 25}
+
+person.update({"occupation": "Engineer", "age": 26})
+print(person)  # Output: {'name': 'Alice', 'age': 26, 'occupation': 'Engineer'}
+
+person.clear()
+print(person)  # Output: {}
+```
+
+## 5. Set Types
+
+Python provides two set data types: `set` and `frozenset`.
+
+### i. `set`
+
+A `set` is an unordered collection of unique elements. Sets are mutable, meaning you can add or remove elements after creation.
+
+#### a. Set Operations
+
+Sets support various operations like union (`|`), intersection (`&`), difference (`-`), symmetric difference (`^`), and membership testing (`in` operator).
+
+```python
+colors = {"red", "green", "blue"}
+print("red" in colors)  # Output: True
+print(colors & {"blue", "yellow"})  # Output: {'blue'}
+print(colors | {"yellow", "purple"})  # Output: {'red', 'green', 'blue', 'yellow', 'purple'}
+print(colors - {"blue", "yellow"})  # Output: {'red', 'green'}
+print(colors ^ {"blue", "yellow"})  # Output: {'red', 'green', 'yellow'}
+```
+
+#### b. Set Methods
+
+Sets provide various built-in methods for performing operations and manipulating their contents, such as:
+
+- `add()`: Add an element to the set.
+- `update()`: Add multiple elements from another iterable (e.g., list, tuple, or range) to the set.
+- `remove()` and `discard()`: Remove an element from the set (with `discard()`, no error is raised if the element is not found).
+- `pop()`: Remove and return an arbitrary element from the set.
+- `clear()`: Remove all elements from the set.
+- `union()`, `intersection()`, `difference()`, and `symmetric_difference()`: Perform set operations and return a new set.
+- `issubset()` and `issuperset()`: Check if a set is a subset or superset of another set, respectively.
+- `isdisjoint()`: Check if two sets have no elements in common.
+- `copy()`: Create a shallow copy of the set.
+
+```python
+colors = {"red", "green", "blue"}
+colors.add("yellow")
+print(colors)  # Output: {'red', 'green', 'blue', 'yellow'}
+
+colors.update(["purple", "orange"])
+print(colors)  # Output: {'orange', 'red', 'purple', 'green', 'blue', 'yellow'}
+
+colors.remove("orange")
+print(colors)  # Output: {'red', 'purple', 'green', 'blue', 'yellow'}
+
+print(colors.pop())  # Output: 'red' (arbitrary element is removed and returned)
+print(colors)  # Output: {'purple', 'green', 'blue', 'yellow'}
+
+colors.clear()
+print(colors)  # Output: set()
+
+set1 = {1, 2, 3}
+set2 = {2, 3, 4}
+print(set1.union(set2))  # Output: {1, 2, 3, 4}
+print(set1.intersection(set2))  # Output: {2, 3}
+print(set1.difference(set2))  # Output: {1}
+print(set1.symmetric_difference(set2))  # Output: {1, 4}
+
+set3 = {1, 2}
+set4 = {1, 2, 3, 4}
+print(set3.issubset(set4))  # Output: True
+print(set4.issuperset(set3))  # Output: True
+
+set5 = {1, 2}
+set6 = {3, 4}
+print(set5.isdisjoint(set6))  # Output: True
+```
+
+### ii. `frozenset`
+
+A `frozenset` is an immutable version of a set. Once a `frozenset` is created, you cannot add or remove elements.
+
+#### a. Creating a `frozenset`
+
+You can create a `frozenset` using the `frozenset()` constructor, passing an iterable (e.g., list, tuple, or set) as an argument.
+
+```python
+numbers = frozenset([1, 2, 3, 4, 5])
+print(numbers)  # Output: frozenset({1, 2, 3, 4, 5})
+```
+
+#### b. `frozenset` Operations and Methods
+
+`frozenset` objects support the same set operations as regular sets (e.g., union, intersection, difference, symmetric difference) and membership testing. However, since they are immutable, methods like `add()`, `remove()`, and `clear()` are not available.
+
+The most commonly used methods for `frozenset` are `issubset()`, `issuperset()`, and `isdisjoint()`, which work the same way as for regular sets.
+
+```python
+frozen_set = frozenset([1, 2, 3])
+regular_set = {2, 3, 4}
+
+print(frozen_set.issubset(regular_set))  # Output: False
+print(frozen_set.issuperset(regular_set))  # Output: False
+print(frozen_set.isdisjoint(regular_set))  # Output: False
+
+print(frozen_set & regular_set)  # Output: frozenset({2, 3})
+print(frozen_set | regular_set)  # Output: frozenset({1, 2, 3, 4})
+```
+
+`frozenset` objects are hashable, meaning they can be used as keys in dictionaries or elements in other sets, unlike regular mutable sets.
+
+```python
+my_dict = {frozenset({1, 2, 3}): "Value"}
+print(my_dict)  # Output: {frozenset({1, 2, 3}): 'Value'}
+```
+
+## 6. Boolean Type: `bool`
+
+The `bool` data type in Python represents a boolean value, which can be either `True` or `False`. Booleans are commonly used in conditional statements and logical operations.
+
+#### a. Boolean Operations
+
+Booleans support logical operations like `and`, `or`, and `not`.
+
+```python
+x = True
+y = False
+
+print(x and y)  # Output: False
+print(x or y)  # Output: True
+print(not x)  # Output: False
+```
+
+#### b. Truthiness
+
+In Python, values of any data type can be evaluated as `True` or `False` in a boolean context. This concept is known as "truthiness." Some values are considered "falsy" (evaluating to `False`), while others are considered "truthy" (evaluating to `True`).
+
+The following values are considered falsy:
+
+- `False`
+- `None`
+- `0` (integer zero)
+- `0.0` (float zero)
+- `''` (empty string)
+- `[]` (empty list)
+- `()` (empty tuple)
+- `{}` (empty dictionary)
+- `set()` (empty set)
+
+All other values are considered truthy, including non-empty containers, non-zero numbers, and any custom objects.
+
+```python
+print(bool(0))  # Output: False
+print(bool(42))  # Output: True
+print(bool(""))  # Output: False
+print(bool("Hello"))  # Output: True
+print(bool([]))  # Output: False
+print(bool([1, 2, 3]))  # Output: True
+```
+
+Truthiness is often used in conditional statements and loops to check if a value exists or is non-empty.
+
+```python
+name = input("Enter your name: ")
+if name:
+    print(f"Hello, {name}!")
+else:
+    print("You didn't enter a name.")
+```
+
+## 7. Binary Types
+
+Python provides three binary data types: `bytes`, `bytearray`, and `memoryview`. These data types are used to handle binary data, such as data from network sockets, files, or low-level system operations.
+
+### i. `bytes`
+
+The `bytes` data type represents an immutable sequence of bytes. It is useful for handling binary data in a fixed-length format.
+
+#### a. Creating `bytes` Objects
+
+You can create `bytes` objects using the `bytes()` constructor or by using literal notation with the `b` prefix.
+
+```python
+data = bytes([0x48, 0x65, 0x6C, 0x6C, 0x6F])  # From a list of integers
+print(data)  # Output: b'Hello'
+
+data = b"Hello, World!"  # Using literal notation
+print(data)  # Output: b'Hello, World!'
+```
+
+#### b. `bytes` Operations and Methods
+
+`bytes` objects support indexing, slicing, and various methods for manipulating and converting binary data.
+
+```python
+data = b"Hello, World!"
+print(data[0])  # Output: 72 (ASCII value of 'H')
+print(data[2:7])  # Output: b'llo, '
+print(data.decode())  # Output: 'Hello, World!' (convert to string)
+print(data.upper())  # Output: b'HELLO, WORLD!'
+print(data.replace(b"Hello", b"Hi"))  # Output: b'Hi, World!'
+```
+
+### ii. `bytearray`
+
+The `bytearray` data type represents a mutable sequence of bytes. It is similar to `bytes` but allows you to modify the byte values after creation.
+
+#### a. Creating `bytearray` Objects
+
+You can create `bytearray` objects using the `bytearray()` constructor or by converting other binary data types like `bytes` or strings.
+
+```python
+data = bytearray(b"Hello")
+print(data)  # Output: bytearray(b'Hello')
+
+data = bytearray("Hello", "utf-8")
+print(data)  # Output: bytearray(b'Hello')
+```
+
+#### b. `bytearray` Operations and Methods
+
+`bytearray` objects support indexing, slicing, and various methods for manipulating and converting binary data, similar to `bytes` objects. Additionally, you can modify individual byte values using item assignment.
+
+```python
+data = bytearray(b"Hello")
+data[0] = ord("J")  # Replace 'H' with 'J'
+print(data)  # Output: bytearray(b'Jello')
+
+data.append(ord("!"))  # Append a byte
+print(data)  # Output: bytearray(b'Jello!')
+
+data.extend(b", World")  # Extend with bytes
+print(data)  # Output: bytearray(b'Jello!, World')
+
+print(data.decode())  # Output: 'Jello!, World'
+```
+
+### iii. `memoryview`
+
+The `memoryview` data type provides a way to access and manipulate the internal data of other binary data types like `bytes` and `bytearray` without creating a copy. It is used for low-level operations and can improve performance when working with large binary data.
+
+#### a. Creating `memoryview` Objects
+
+You can create `memoryview` objects by passing a `bytes` or `bytearray` object to the `memoryview()` constructor.
+
+```python
+data = b"Hello, World!"
+view = memoryview(data)
+print(view)  # Output: <memory at 0x7f8e9c4b8b48>
+```
+
+#### b. `memoryview` Operations and Methods
+
+`memoryview` objects support indexing, slicing, and various methods for manipulating binary data. You can also modify the underlying bytes or bytearrays through the `memoryview`.
+
+```python
+data = bytearray(b"Hello")
+view = memoryview(data)
+print(view)  # Output: <memory at 0x7f8e9c4b8b48>
+
+view[0] = ord("J")  # Modify the underlying bytearray
+print(data)  # Output: bytearray(b'Jello')
+
+view[1:4] = b"xyz"  # Modify a slice
+print(data)  # Output: bytearray(b'Jxyzo')
+```
+
+`memoryview` objects can also be used with other binary data types like `array` from the `array` module, providing a uniform way to access and manipulate binary data across different data structures.
+
+## 8. None Type: `NoneType`
+
+The `NoneType` data type in Python has only one possible value: `None`. It is used to represent the absence of a value or a null value.
+
+#### a. Using `None`
+
+`None` is often used as a default value, a placeholder for optional arguments, or to indicate the absence of a meaningful value.
+
+```python
+x = None
+if x is None:
+    print("x has no value")  # Output: x has no value
+
+def my_function(arg=None):
+    if arg is None:
+        print("No argument provided.")
+    else:
+        print(f"The argument is: {arg}")
+
+my_function()  # Output: No argument provided.
+my_function(42)  # Output: The argument is: 42
+```
+
+`None` is also returned by certain operations or functions when there is no meaningful value to return.
+
+```python
+print(None == 0)  # Output: False
+print(None is None)  # Output: True
+```
+
+While `None` evaluates to `False` in boolean contexts, it is not the same as `False`. `None` is a distinct value representing the absence of a value, whereas `False` is a boolean value representing logical falsity.
+
+---
+
+We have covered the various data structures available in Python, their characteristics, and the operations and methods that can be performed on each data type. Understanding these data structures and their use cases is crucial for writing efficient and readable Python code. By mastering these concepts, you'll be well-equipped to handle and manipulate data effectively in your Python programs.

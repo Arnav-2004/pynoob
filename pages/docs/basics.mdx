@@ -1,0 +1,400 @@
+---
+title: Python Basics
+section: Docs
+order: 2
+---
+
+# Python Basics
+
+Before diving into the specific topics, let's briefly discuss Python's syntax and coding style. Python is known for its clean and readable syntax, which follows a set of guidelines called the "Zen of Python." These guidelines emphasize simplicity, clarity, and readability. Python code is typically written using whitespace indentation instead of curly braces or keywords to define code blocks, making it visually distinct Python programs are usually written in plain text files with the `.py` extension. You can run Python scripts from the command line or using an Integrated Development Environment (IDE) like PyCharm, Visual Studio Code, or Spyder 
+
+## 1. Variables and Data Types
+
+Variables in Python are used to store and manipulate data. Unlike some other programming languages, Python does not require explicit declaration of variable data types. The type of a variable is determined automatically based on the value assigned to it.
+
+### i. Assigning Values to Variables
+
+```python
+x = 5       # Integer
+y = 3.14    # Float
+name = "Alice"  # String
+is_student = True  # Boolean
+```
+
+Python supports various data types, including:
+
+- **Integers** (`int`): Whole numbers, positive or negative (e.g., `10`, `-5`).
+- **Floating-point numbers** (`float`): Decimal numbers (e.g., `3.14`, `-0.5`).
+- **Strings** (`str`): Sequences of characters (e.g., `"Hello, World!"`, `'Python'`).
+- **Booleans** (`bool`): Logical values `True` or `False`.
+- **Lists** (`list`): Ordered collections of items (e.g., `[1, 2, 3]`, `["apple", "banana", "orange"]`).
+- **Tuples** (`tuple`): Immutable ordered collections (e.g., `(1, 2, 3)`, `("apple", "banana", "orange")`).
+- **Dictionaries** (`dict`): Unordered collections of key-value pairs (e.g., `{"name": "Alice", "age": 25}`).
+- **Sets** (`set`): Unordered collections of unique elements (e.g., `{1, 2, 3}`, `{"apple", "banana", "orange"}`).
+
+You can check the type of a variable using the `type()` function:
+
+```python
+x = 5
+print(type(x))  # Output: <class 'int'>
+```
+
+## 2. Operators and Expressions
+
+Python provides a wide range of operators for performing various operations on variables and values.
+
+### i. Arithmetic Operators
+
+- `+` (Addition)
+- `-` (Subtraction)
+- `*` (Multiplication)
+- `/` (Division)
+- `//` (Integer division)
+- `%` (Modulus)
+- `**` (Exponentiation)
+
+```python
+x = 10
+y = 3
+print(x + y)  # Output: 13
+print(x - y)  # Output: 7
+print(x * y)  # Output: 30
+print(x / y)  # Output: 3.3333333333333335
+print(x // y)  # Output: 3 (integer division)
+print(x % y)  # Output: 1 (remainder)
+print(x ** y)  # Output: 1000 (10 raised to the power of 3)
+```
+
+### ii. Assignment Operators
+
+- `=` (Simple assignment)
+- `+=` (Add and assign)
+- `-=` (Subtract and assign)
+- `*=` (Multiply and assign)
+- `/=` (Divide and assign)
+- `//=` (Integer divide and assign)
+- `%=` (Modulus and assign)
+- `**=` (Exponentiate and assign)
+
+```python
+x = 5
+x += 3  # Same as x = x + 3
+print(x)  # Output: 8
+
+y = 10
+y //= 3  # Same as y = y // 3
+print(y)  # Output: 3
+```
+
+### iii. Comparison Operators
+
+- `==` (Equal to)
+- `!=` (Not equal to)
+- `>` (Greater than)
+- `<` (Less than)
+- `>=` (Greater than or equal to)
+- `<=` (Less than or equal to)
+
+```python
+x = 5
+y = 10
+print(x == y)  # Output: False
+print(x != y)  # Output: True
+print(x > y)   # Output: False
+print(x < y)   # Output: True
+print(x >= y)  # Output: False
+print(x <= y)  # Output: True
+```
+
+### iv. Logical Operators
+
+- `and` (Logical AND)
+- `or` (Logical OR)
+- `not` (Logical NOT)
+
+```python
+x = 5
+y = 10
+print(x > 3 and y > 15)  # Output: False
+print(x > 3 or y > 15)   # Output: True
+print(not(x == y))       # Output: True
+```
+
+### v. Operator Precedence and Parentheses
+
+Python follows the standard order of operations (PEMDAS: Parentheses, Exponents, Multiplication/Division, Addition/Subtraction). You can use parentheses to override the default precedence.
+
+```python
+x = 10 + 3 * 2  # Result: 16 (multiplication takes precedence over addition)
+y = (10 + 3) * 2  # Result: 26 (parentheses override precedence)
+```
+
+## 3. Control Flow: Conditionals and Loops
+
+Control flow statements allow you to control the execution of your code based on certain conditions or to repeat a block of code multiple times.
+
+### i. Conditional Statements
+
+The `if` statement is used to execute different blocks of code based on specified conditions.
+
+```python
+age = 18
+
+if age >= 18:
+    print("You are an adult.")
+else:
+    print("You are a minor.")
+```
+
+You can also use `elif` (else if) to check multiple conditions:
+
+```python
+grade = 85
+
+if grade >= 90:
+    print("Grade: A")
+elif grade >= 80:
+    print("Grade: B")
+elif grade >= 70:
+    print("Grade: C")
+else:
+    print("Grade: F")
+```
+
+### ii. Loops
+
+Loops in Python allow you to execute a block of code repeatedly based on certain conditions.
+
+#### a. `for` Loop
+
+The `for` loop is used to iterate over a sequence (e.g., a list, tuple, string) or any other iterable object.
+
+```python
+fruits = ["apple", "banana", "orange"]
+
+for fruit in fruits:
+    print(fruit)
+```
+
+You can also use the `range()` function to generate a sequence of numbers:
+
+```python
+for i in range(5):
+    print(i)  # Output: 0 1 2 3 4
+```
+
+#### b. `while` Loop
+
+The `while` loop executes a block of code as long as a specified condition is true.
+
+```python
+count = 0
+while count < 5:
+    print(count)
+    count += 1  # Output: 0 1 2 3 4
+```
+
+You can use the `break` statement to exit a loop prematurely, and the `continue` statement to skip the current iteration and move to the next one.
+
+## 4. F-Strings (Formatted String Literals)
+
+Python 3.6 introduced a new way of formatting strings called "formatted string literals" or "f-strings" for short. F-strings provide a concise and more readable way of embedding expressions inside string literals.
+
+```python
+name = "Alice"
+age = 25
+
+# Old way of string formatting
+print("My name is {} and I'm {} years old.".format(name, age))
+
+# Using f-strings
+print(f"My name is {name} and I'm {age} years old.")
+```
+
+In the example above, the `f` before the string literal `"My name is {name} and I'm {age} years old."` is what makes it an f-string. Inside the curly braces `{}`, you can put any valid Python expression, which will be evaluated and inserted into the resulting string.
+
+F-strings also support more advanced formatting options, such as formatting numbers, aligning text, and handling data types.
+
+```python
+pi = 3.14159
+print(f"The value of pi is approximately {pi:.2f}")  # Output: The value of pi is approximately 3.14
+
+# Aligning text
+name = "Alice"
+print(f"{name:>10}") # Output: "     Alice" (aligned to the right with 10 spaces)
+
+# Handling data types
+value = 42
+print(f"{value} is {type(value).__name__}") # Output: "42 is int"
+```
+
+In the examples above, `{pi:.2f}` formats the float value of `pi` to two decimal places, `{name:>10}` right-aligns the string `name` with 10 spaces, and `{type(value).__name__}` gets the name of the data type of `value` as a string.
+
+F-strings provide a more readable and expressive way of formatting strings in Python, especially when dealing with complex expressions or multiple substitutions.
+
+## 5. Functions and Modules
+
+Functions in Python are reusable blocks of code that perform specific tasks. They help to organize and modularize your code, making it more readable and maintainable.
+
+### i. Defining Functions
+
+```python
+def greet(name):
+    """This function greets the given person."""
+    print(f"Hello, {name}!")
+
+greet("Alice")  # Output: Hello, Alice!
+```
+
+Functions can accept parameters (inputs) and return values (outputs). The `return` statement is used to return a value from a function.
+
+```python
+def add_numbers(x, y):
+    """This function adds two numbers."""
+    result = x + y
+    return result
+
+sum = add_numbers(3, 5)
+print(sum)  # Output: 8
+```
+
+Python also supports default parameter values, arbitrary arguments (`*args`), and keyword arguments (`**kwargs`).
+
+### ii. Modules and Packages
+
+Modules in Python are files containing Python code (functions, classes, variables, etc.). They allow you to organize and reuse code across different parts of your program or across multiple programs.
+
+To use a module in your Python script, you need to import it first.
+
+```python
+# my_module.py
+def greet(name):
+    print(f"Hello, {name}!")
+
+# main.py
+import my_module
+
+my_module.greet("Alice")  # Output: Hello, Alice!
+```
+
+You can also import specific functions or variables from a module using the `from` keyword:
+
+```python
+from my_module import greet
+
+greet("Alice")  # Output: Hello, Alice!
+```
+
+Python comes with a vast standard library of modules that provide a wide range of functionality, from file I/O to networking, web development, and more. Some commonly used standard library modules include `math`, `os`, `sys`, `datetime`, and `re`.
+
+Packages are collections of modules that allow for better organization and modularity of larger Python projects. Each package is a directory containing one or more module files, along with an `__init__.py` file that marks the directory as a Python package.
+
+## 6. Comments
+
+Comments in Python are a way to add explanatory notes or annotations to your code. They are ignored by the Python interpreter and do not affect the execution of the program. Comments are essential for improving code readability, documenting complex logic, and leaving notes for future reference.
+
+Python supports two types of comments: single-line comments and multi-line comments.
+
+### i. Single-Line Comments
+
+Single-line comments start with the hash symbol (`#`), and they extend to the end of the line. Any text following the `#` symbol on the same line is considered a comment and is ignored by the Python interpreter.
+
+```python
+# This is a single-line comment
+
+x = 5  # This is a variable assignment
+print(x)  # Output: 5
+```
+
+Single-line comments can be placed at the beginning of a line or at the end of a line after some code.
+
+### ii. Multi-Line Comments
+
+Python does not have a built-in syntax for multi-line comments. However, there are a few ways to achieve multi-line comments:
+
+1. **Using multiple single-line comments**:
+   ```python
+   # This is a multi-line comment
+   # written using multiple
+   # single-line comments
+   ```
+
+2. **Using multi-line strings**:
+   Multi-line strings (enclosed in triple quotes `"""` or `'''`) can be used as comments, although they are not technically comments and will still be parsed by the Python interpreter.
+
+   ```python
+   """
+   This is a multi-line comment
+   written using a multi-line string.
+   """
+
+   print("Hello, World!")
+   ```
+
+3. **Using docstrings**:
+   Docstrings are multi-line strings used to document functions, modules, or classes. Although their primary purpose is documentation, they can also serve as multi-line comments.
+
+   ```python
+   def my_function():
+       """
+       This is a docstring that can serve
+       as a multi-line comment, explaining
+       what the function does.
+       """
+       print("Hello from my_function!")
+   ```
+
+While single-line comments are more common for short explanations, multi-line comments or docstrings are useful for providing longer, more detailed explanations or documentation for your code.
+
+It's considered a good practice to use comments judiciously to explain complex logic, document code behavior, or provide context for future reference. However, comments should not replace clear and self-documenting code. Strive for a balance between well-written code and appropriate use of comments for better code readability and maintainability.
+
+## 7. Input and Output Operation
+
+Python provides several built-in functions for handling input and output operations, such as reading data from the user or writing data to files.
+
+### i. User Input
+
+The `input()` function is used to get input from the user through the command line or terminal.
+
+```python
+name = input("Enter your name: ")
+print(f"Hello, {name}!")
+```
+
+By default, `input()` returns a string. If you need to get input of a different data type, you can perform type conversion explicitly.
+
+```python
+age = int(input("Enter your age: "))
+print(f"You are {age} years old.")
+```
+
+### ii. File Operations
+
+Python provides various functions and methods for working with files. The `open()` function is used to open a file for reading or writing.
+
+```python
+# Writing to a file
+with open("data.txt", "w") as file:
+    file.write("Hello, World!")
+
+# Reading from a file
+with open("data.txt", "r") as file:
+    content = file.read()
+    print(content)  # Output: Hello, World!
+```
+
+The `with` statement is used to ensure that the file is properly closed after use, even if an exception occurs.
+
+The `open()` function accepts multiple modes for file operations, such as `"r"` (read), `"w"` (write), `"a"` (append), and `"b"` (binary).
+
+```python
+# Appending to a file
+with open("data.txt", "a") as file:
+    file.write("\nThis is a new line.")
+```
+
+You can also use other file methods like `read()`, `readline()`, `readlines()`, `write()`, and `writelines()` to perform various file operations.
+
+---
+
+We covered the fundamental topics of variables and data types, operators and expressions, control flow statements, functions and modules, and input/output operations in Python.

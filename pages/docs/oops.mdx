@@ -1,0 +1,351 @@
+---
+title: Object-Oriented Programming (OOP)
+section: Docs
+order: 4
+---
+
+# Object-Oriented Programming (OOP)
+
+Object-Oriented Programming (OOP) is a programming paradigm that revolves around the concept of objects, which are instances of classes. It provides a way to structure and organize code by encapsulating data (attributes) and behavior (methods) into reusable and modular units. OOP is widely used in software development because it promotes code reusability, modularity, and maintainability.
+
+## 1. Classes and Objects
+
+In Python, classes are the blueprints or templates for creating objects. An object is an instance of a class, containing its own data (attributes) and methods.
+
+### i. Defining a Class
+
+```python
+class Dog:
+    def __init__(self, name, breed, age):
+        self.name = name  # Attributes
+        self.breed = breed
+        self.age = age
+
+    def bark(self):  # Method
+        print(f"{self.name} says woof!")
+
+    def get_info(self):
+        return f"{self.name} is a {self.age}-year-old {self.breed}."
+```
+
+In this example, `Dog` is a class with three attributes (`name`, `breed`, and `age`) and two methods (`bark()` and `get_info()`). The `__init__()` method is a special method called a constructor, which is automatically invoked when an object is created. It is responsible for initializing the object's attributes with the provided values.
+
+### ii. Creating Objects
+
+```python
+my_dog = Dog("Buddy", "Labrador", 3)
+your_dog = Dog("Max", "Golden Retriever", 5)
+```
+
+Here, `my_dog` and `your_dog` are instances (objects) of the `Dog` class, each with its own set of attributes (`name`, `breed`, and `age`).
+
+### iii. Accessing Attributes and Methods
+
+```python
+print(my_dog.name)  # Output: Buddy
+print(your_dog.breed)  # Output: Golden Retriever
+print(my_dog.get_info())  # Output: Buddy is a 3-year-old Labrador.
+
+my_dog.bark()  # Output: Buddy says woof!
+your_dog.bark()  # Output: Max says woof!
+```
+
+Objects can access and manipulate their own attributes and methods using the dot notation (`object.attribute` or `object.method()`).
+
+### iv. Class and Instance Attributes
+
+In Python, you can define attributes at the class level or the instance level. Class attributes are shared among all instances of the class, while instance attributes are specific to each individual instance.
+
+```python
+class Dog:
+    species = "Canis familiaris"  # Class attribute
+
+    def __init__(self, name, breed, age):
+        self.name = name  # Instance attributes
+        self.breed = breed
+        self.age = age
+
+my_dog = Dog("Buddy", "Labrador", 3)
+print(my_dog.species)  # Output: Canis familiaris
+print(Dog.species)  # Output: Canis familiaris
+
+my_dog.species = "Canine"  # This creates a new instance attribute
+print(my_dog.species)  # Output: Canine
+print(Dog.species)  # Output: Canis familiaris
+```
+
+In this example, `species` is a class attribute shared by all instances of the `Dog` class. However, when we assign a new value to `my_dog.species`, it creates a new instance attribute with the same name, leaving the class attribute unchanged.
+
+### v. Class Methods and Static Methods
+
+In addition to instance methods, Python also supports class methods and static methods.
+
+**Class Methods**:
+Class methods are methods that operate on the class itself, rather than on individual instances. They take the class as the first argument (`cls`) and can access and modify class attributes.
+
+```python
+class Dog:
+    species = "Canis familiaris"
+
+    def __init__(self, name, breed, age):
+        self.name = name
+        self.breed = breed
+        self.age = age
+
+    @classmethod
+    def set_species(cls, new_species):
+        cls.species = new_species
+
+    @classmethod
+    def from_string(cls, dog_str):
+        name, breed, age = dog_str.split("-")
+        return cls(name, breed, int(age))
+
+Dog.set_species("Canine")
+print(Dog.species)  # Output: Canine
+
+buddy = Dog.from_string("Buddy-Labrador-3")
+print(buddy.name)  # Output: Buddy
+print(buddy.breed)  # Output: Labrador
+print(buddy.age)  # Output: 3
+```
+
+In this example, `set_species()` is a class method that modifies the class attribute `species`. The `from_string()` method is another class method that creates a new instance of the `Dog` class from a string representation.
+
+**Static Methods**:
+Static methods are functions defined within a class but do not operate on the class or instance attributes. They are primarily used for utility or helper functions that are logically related to the class but don't require access to its data.
+
+```python
+class Dog:
+    def __init__(self, name, breed, age):
+        self.name = name
+        self.breed = breed
+        self.age = age
+
+    @staticmethod
+    def is_adult(age):
+        return age >= 2
+
+buddy = Dog("Buddy", "Labrador", 3)
+print(Dog.is_adult(buddy.age))  # Output: True
+```
+
+In this example, `is_adult()` is a static method that checks if the provided age is considered adult for a dog. It does not access any instance or class attributes and can be called directly on the class itself or through an instance.
+
+## 2. Introduction to OOP Concepts
+
+OOP is built upon four fundamental principles: Encapsulation, Abstraction, Inheritance, and Polymorphism. These principles work together to create robust, scalable, and efficient software systems.
+
+### i. Encapsulation
+
+Encapsulation is the mechanism of bundling data (attributes) and methods (behaviors) together within a single unit, called a class. It enforces data hiding and access control, preventing direct access to the internal state of an object from outside the class. This helps in maintaining data integrity and ensuring that objects are used in a consistent and predictable manner.
+
+In Python, encapsulation is achieved through the use of naming conventions:
+
+- **Public attributes and methods**: These can be accessed from anywhere, both inside and outside the class.
+- **Private attributes and methods**: These are prefixed with a double underscore (`__`), and they are accessible only within the class itself. Python uses name mangling to enforce this privacy.
+- **Protected attributes and methods**: These are prefixed with a single underscore (`_`), indicating that they should be treated as private, but they can still be accessed from outside the class (although this should be avoided).
+
+Here's an example of encapsulation in Python:
+
+```python
+class BankAccount:
+    def __init__(self, name, balance):
+        self.name = name  # Public attribute
+        self.__balance = balance  # Private attribute (name mangled to _BankAccount__balance)
+
+    def deposit(self, amount):
+        self.__balance += amount
+
+    def withdraw(self, amount):
+        if self.__balance >= amount:
+            self.__balance -= amount
+        else:
+            print("Insufficient balance.")
+
+    def get_balance(self):  # Public method to access the private attribute
+        return self.__balance
+```
+
+In this example, the `__balance` attribute is private, and it can only be accessed or modified through the class's methods (`deposit()`, `withdraw()`, and `get_balance()`). This encapsulation ensures that the internal state of the `BankAccount` object is protected and can only be modified in a controlled and consistent manner.
+
+### ii. Abstraction
+
+Abstraction is the process of exposing only the relevant details of an object to the outside world, while hiding the implementation details. It provides a simplified and high-level understanding of the object's functionality, allowing users to interact with the object without needing to know how it works internally.
+
+In Python, abstraction is achieved through the use of abstract base classes and abstract methods. The `abc` module provides the infrastructure for defining abstract base classes.
+
+```python
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+    @abstractmethod
+    def perimeter(self):
+        pass
+
+class Rectangle(Shape):
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+
+    def area(self):
+        return self.length * self.width
+
+    def perimeter(self):
+        return 2 * (self.length + self.width)
+```
+
+In this example, the `Shape` class is an abstract base class that defines two abstract methods: `area()` and `perimeter()`. The `Rectangle` class inherits from `Shape` and provides concrete implementations of these methods.
+
+By using abstraction, you can create a common interface (the abstract base class) that defines a contract for derived classes to follow. This promotes code reusability and makes it easier to extend or modify the system in the future.
+
+### iii. Inheritance
+
+Inheritance is a mechanism that allows a new class (derived or child class) to inherit properties and behaviors from an existing class (base or parent class). The derived class inherits attributes and methods from the base class and can also add new attributes and methods or override the existing ones.
+
+Inheritance promotes code reuse and helps in creating a hierarchical structure of classes, which is a natural way of organizing and modeling real-world relationships.
+
+Python supports different types of inheritance, including single inheritance (inheriting from single base class), multiple inheritance (inheriting from multiple base classes), and multi-level inheritance (inheriting from a derived class).
+
+#### a. Single Inheritance
+
+Single inheritance involves one subclass inheriting from one superclass. This is the simplest form of inheritance.
+
+```python
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        print(f"{self.name} makes a sound.")
+
+class Dog(Animal):
+    def __init__(self, name, breed):
+        super().__init__(name)  # Call the base class constructor
+        self.breed = breed
+
+    def bark(self):
+        print(f"{self.name} says woof!")
+```
+
+In this example, the `Dog` class inherits from the `Animal` class. The `Dog` class has access to both the `name` attribute and the `speak()` method from the `Animal` class, as well as its own `breed` attribute and `bark()` method.
+
+#### b. Multiple Inheritance
+
+Python supports multiple inheritance, which means a class can inherit attributes and methods from multiple base classes. This can be useful when you need to combine behavior from different classes, but it can also lead to complex inheritance hierarchies and potential conflicts if not used carefully.
+
+```python
+class Animal:
+    def speak(self):
+        print("Animal speaks")
+
+class Mammal:
+    def eat(self):
+        print("Mammal eats")
+
+class Dog(Animal, Mammal):  # Dog inherits from both Animal and Mammal
+    def bark(self):
+        print("Dog barks")
+
+# Multiple inheritance
+dog = Dog()
+dog.speak()  # Output: Animal speaks
+dog.eat()    # Output: Mammal eats
+dog.bark()   # Output: Dog barks
+```
+
+In this example, the `Dog` class inherits from both the `Animal` and `Mammal` classes, thus having access to methods from both.
+
+#### c. Multilevel Inheritance
+
+Multilevel inheritance involves a chain of inheritance where a subclass inherits from a superclass, and another subclass inherits from the first subclass, creating a hierarchical structure.
+
+```python
+class Animal:
+    def speak(self):
+        print("Animal speaks")
+
+class Dog(Animal):  # Dog inherits from Animal
+    def bark(self):
+        print("Dog barks")
+
+class Labrador(Dog):  # Labrador inherits from Dog
+    def play(self):
+        print("Labrador plays fetch")
+
+# Multilevel inheritance
+labrador = Labrador()
+labrador.speak()  # Output: Animal speaks
+labrador.bark()   # Output: Dog barks
+labrador.play()   # Output: Labrador plays fetch
+```
+
+In this example, the `Labrador` class inherits from both the `Dog` class (which itself inherits from `Animal`), creating a multilevel inheritance hierarchy.
+
+In Python, you can choose the appropriate type of inheritance based on your design needs. Single inheritance is straightforward and commonly used, while multiple inheritance and multilevel inheritance provide more complex inheritance structures, allowing for greater flexibility but requiring careful design to avoid ambiguity or the diamond problem.
+
+### iv. Polymorphism
+
+Polymorphism is the ability of an object to take on many forms or to have multiple behaviors. It allows objects of different classes to be treated as objects of a common superclass, enabling code flexibility and extensibility.
+
+#### a. Runtime Polymorphism (Dynamic Method Dispatch):
+
+Runtime polymorphism, also known as dynamic method dispatch, allows a subclass to provide a specific implementation of a method that is already provided by one of its parent classes. This is achieved through method overriding. When a method is called on an object, the Python interpreter determines which implementation to execute based on the type of object at runtime.
+
+```python
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        print(f"{self.name} makes a sound.")
+
+class Dog(Animal):
+    def speak(self):
+        print(f"{self.name} says woof!")
+
+class Cat(Animal):
+    def speak(self):
+        print(f"{self.name} says meow!")
+
+animals = [Dog("Buddy"), Cat("Whiskers"), Animal("Generic")]
+
+for animal in animals:
+    animal.speak()
+```
+
+In this example, both `Dog` and `Cat` classes inherit from the `Animal` class and override the `speak()` method with their own implementations. The `speak()` method is called on each object in the animals list, and the appropriate implementation of `speak()` is executed based on the actual type of the object.
+
+#### b. Compile-time Polymorphism:
+
+Python does not support traditional compile-time polymorphism directly through method overloading, as seen in languages like Java or C++. However, Python provides a form of polymorphism through function overloading using default arguments or variable-length arguments.
+
+Here's an example using default arguments:
+
+```python
+class Calculator:
+    def add(self, a, b=None):
+        if b is None:
+            return a
+        else:
+            return a + b
+
+# Compile-time polymorphism
+calc = Calculator()
+print(calc.add(5))      # Output: 5
+print(calc.add(5, 3))   # Output: 8
+```
+
+In this example, the `add()` method of the `Calculator` class can behave differently based on the number of arguments passed.
+
+However, it's important to note that this is not true compile-time polymorphism since the method resolution is done at runtime, and the decision of which method to call is made dynamically by Python.
+
+Polymorphism allows for writing more flexible and extensible code, as new classes can be added to the system without modifying the existing code that interacts with the objects.
+
+---
+
+We covered the fundamental concepts of Object-Oriented Programming (OOP) in Python, including classes, objects, inheritance, polymorphism, encapsulation, and abstraction. Understanding and applying these concepts will enable you to write modular, reusable, and maintainable code, making it easier to develop complex software systems. OOP promotes code organization, extensibility, and code reuse, making it a powerful paradigm in Python programming.
